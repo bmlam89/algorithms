@@ -1,5 +1,6 @@
 function factorial(val)
 {
+    /* base case is 0! = 1 */
     if(val==0)
     {
         return 1
