@@ -6,6 +6,11 @@ function Node(val)
     this.right = null;
 }
 
+Node.prototype.increment = function()
+{
+  this.count++;
+  return this;
+}
 function BST()
 {
     this.root = null;
@@ -24,6 +29,7 @@ BST.prototype.insert = function(val)
 
     var current = this.root;
     this.insert_node(current,val);
+    return this;
 }
 
 BST.prototype.insert_node = function(node,val)
@@ -37,7 +43,10 @@ BST.prototype.insert_node = function(node,val)
             node.left = new Node(val);
         }
         /* else we traverse left subtree even further until we hit that correct spot */
-        this.insert_node(node.left,val);
+        else
+        {
+            this.insert_node(node.left,val);
+        }
     }
     /* repeat same steps for right subtree */
     else if(val > node.val)
@@ -46,18 +55,18 @@ BST.prototype.insert_node = function(node,val)
         {
             node.right = new Node(val);
         }
-        this.insert_node(node.right,val);
+        else
+        {
+            this.insert_node(node.right,val);
+        }
     }
     /* case to handle duplicate values */
     else
     {
-        node.count++;
+        node.increment();
     }
-
-
 }
 
-/* inorder traversal implementation to print values of BST */
 BST.prototype.print = function()
 {
   this.print_helper(this.root);
@@ -69,16 +78,14 @@ BST.prototype.print_helper = function(node)
   if(node)
   {
     
-    
+    console.log(node)
     this.print_helper(node.left)
-    console.log(node.val)
+    
     this.print_helper(node.right)
   }
 }
-
-/* testing out BST implementation */
 var bst = new BST()
-bst.insert(20);
-bst.insert(10);
-bst.insert(30).insert(35).insert(3).insert(11).insert(1).insert(100).insert(22);
+
+
+bst.insert(20).insert(10).insert(30).insert(35).insert(3).insert(11).insert(1).insert(100).insert(22).insert(3);
 bst.print()
