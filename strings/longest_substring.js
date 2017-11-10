@@ -38,9 +38,10 @@ function longest_substring2()
             set.add(s[j++]);
             max = Math.max(max,set.size);
         }else{
-            /*once duplicate has been found, delete first item in set, and increment i*/
-            /*we keep deleting characters from the set until we've removed the duplicate value*/
-            /*this is the first instance where we can start adding to the set again without worrying about duplicates*/
+
+            /*once duplicate is found, we want to remove characters until we've removed the duplicate character*/
+            /*reason being is because we want to give characters before the duplicate a chance to be counted again as 
+            part of the longest substring*/
             set.delete(s[i++]);
         }
     }
