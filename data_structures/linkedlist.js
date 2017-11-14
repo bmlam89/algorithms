@@ -133,6 +133,37 @@ SLL.prototype.reverse = function()
     return this;
 }
 
+SLL.prototype.remove_kth_from_end = function(k){
+    var length = 0;
+    var current = this.header;
+    while(current){
+        length++;
+        current = current.next;
+    }
+    current = this.header;
+    if(length-k==0){
+        //remove header from SLL
+        if(current.next){
+            this.header = current.next;
+        }else{
+            this.header = null;
+        }
+    }else if(k==1){//remove last item in SLL
+        for(var i = 0; i < length-1; i++){
+            var prev = current;
+            current = current.next;
+        }
+        prev.next = current.next;
+    }else{
+        for(var i = 0; i < length-k; i++){
+            var prev = current;
+            current = current.next;
+        }
+        prev.next = current.next;
+    }
+    return this;
+}
+
 
 //testing singly linked list class
 var node1 = new Node(1);
@@ -143,3 +174,4 @@ var sll = new SLL();
 sll.insert_at_front(node1).insert_at_front(node2).insert_at_front(node3).insert_at_front(node4).print()
 sll.insert_at_back(node1).insert_at_back(node2).insert_at_back(node3).insert_at_back(node4).print();
 sll.reverse().print();
+sll.remove_kth_from_end(2).print()
