@@ -42,6 +42,41 @@ HashTable.prototype.insert = function(key,val){
     return this;
 }
 
+
+HashTable.prototype.remove = function(key){
+    /*return null if numkeys == 0*/
+    if(!this.numkeys){
+        return null;
+    }else{
+        var idx = this.hashcode(key) % this.arrary.length;
+        var current = this.arrary[idx];
+        
+        /*check if current isn't a node, return null*/
+        if(!current){
+            return null;
+        }else{
+            /*if key is first node in linked list, shift header to header.next*/
+            if(current.key == key && current == this.array[idx]){
+                var val = current.val;
+                this.array[idx] = this.array[idx].next;
+            }else{
+                /*iterating through linked list*/
+                while(current){
+                    var prev = current;
+                    current = current.next;
+
+                    if(current.key == key){
+                        var val = current.val;
+                        prev.next = current.next;
+                    }
+                }
+            }
+        }
+    }
+    return val;
+}
+
+
 HashTable.prototype.is_empty = function(){
     if(!this.numkeys){
         return true;
