@@ -1,4 +1,4 @@
-/* implementation of singly linked list */
+/* implementation of singly linked list and methods associated with it */
 
 
 //Node object implementation

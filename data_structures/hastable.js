@@ -1,3 +1,5 @@
+/*implementation for hashtable data structure*/
+
 function Node(key,val){
     this.key = key;
     this.val = val;
