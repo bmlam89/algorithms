@@ -175,3 +175,104 @@ sll.insert_at_front(node1).insert_at_front(node2).insert_at_front(node3).insert_
 sll.insert_at_back(node1).insert_at_back(node2).insert_at_back(node3).insert_at_back(node4).print();
 sll.reverse().print();
 sll.remove_kth_from_end(2).print()
+
+
+/*summing two linked lists together*/
+function ListNode(val){
+    this.val = val;
+    this.next = null;
+}
+
+var addTwoNumbers = function(l1, l2) {
+    var r1 = l1; r2 = l2; carry = 0; sum = null
+    /*base case if l1 exists but not l2*/
+    if(r1 && !r2){
+        return r1;
+    }else if(!r1 && r2){ /*if l1 doesn't exist but l2 does*/
+        return r2;
+    }
+    while(r1 && r2){
+        if(r1.val+r2.val+carry >= 10){
+            if(!sum){
+                sum = new ListNode(r1.val+r2.val+carry-10);
+            }else{
+                var s_runner = sum;
+                while(s_runner.next){
+                    s_runner = s_runner.next;
+                }
+                s_runner.next = new ListNode(r1.val+r2.val+carry-10);
+            }
+            carry = 1;
+        }else{
+           if(!sum){
+               sum = new ListNode(r1.val+r2.val+carry);
+           }else{
+               var s_runner = sum;
+               while(s_runner.next){
+                   s_runner = s_runner.next;
+               }
+               s_runner.next = new ListNode(r1.val+r2.val+carry);
+           }
+            carry = 0;
+        }
+        r1 = r1.next;
+        r2 = r2.next;
+    }
+    while(r1){
+        if(r1.val+carry >= 10){
+            s_runner = sum;
+            while(s_runner.next){
+                s_runner = s_runner.next;
+            }
+            s_runner.next = new ListNode(r1.val+carry-10);
+            carry = 1;
+        }else{
+            s_runner = sum;
+            while(s_runner.next){
+                s_runner = s_runner.next;
+            }
+            s_runner.next = new ListNode(r1.val+carry);
+            carry = 0;
+        }
+        r1 = r1.next;
+    }
+    while(r2){
+        if(r2.val+carry >= 10){
+            s_runner = sum;
+            while(s_runner.next){
+                s_runner = s_runner.next;
+            }
+            s_runner.next = new ListNode(r2.val+carry-10);
+            carry = 1;
+        }else{
+            s_runner = sum;
+            while(s_runner.next){
+                s_runner = s_runner.next;
+            }
+            s_runner.next = new ListNode(r2.val+carry);
+            carry = 0;
+        }
+        r2 = r2.next;
+    }
+    if(carry){
+        s_runner = sum;
+        while(s_runner.next){
+            s_runner = s_runner.next;
+        }
+        s_runner.next = new ListNode(carry);
+    }
+    return sum;
+};
+
+/* testing sum */
+var l1 = new ListNode(5);
+var l2 = new ListNode(2);
+l1.next = new ListNode(6);
+l1.next.next = new ListNode(4);
+l2.next = new ListNode(4);
+l2.next.next = new ListNode(3);
+var sum = addTwoNumbers(l1,l2);
+while(sum){
+  console.log(sum.val);
+  sum = sum.next;
+}
