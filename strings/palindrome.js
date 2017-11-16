@@ -41,3 +41,29 @@ function is_palindrome2(string)
 }
 console.log(is_palindrome2("  rac   e      c  a r    e  r "));
 console.log(is_palindrome2("  rac   e      c  a r    "));
+
+/*longest palindrome substring*/
+/*inefficient implementation*/
+function longest_palindrome(str){
+    if(!str.length)
+        return '';
+    else if(str.length==1)
+        return str;
+    else{
+        var pal = '';
+        for(var i = 0; i < str.length; i++){
+            var substr = str.slice(i,str.length);
+            for(var j = str.length; j >= 0; j--){
+                if(is_palindrome(substr)){
+                    if(pal.length < substr.length){
+                        pal = substr;
+                    }
+                }
+                substr = substr.slice(i,j);
+            }
+        }
+        return pal;
+    }
+}
+
+console.log(longestPalindrome("asdfasfwt3g23gaaaaaaaaaaaaddaaaaaaaaaaabbbbbbbbaaaaaaaaaaaaaaaaaaaaaweaogiae;gjha"));
