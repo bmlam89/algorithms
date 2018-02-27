@@ -67,3 +67,13 @@ function longest_palindrome(str){
 }
 
 console.log(longestPalindrome("asdfasfwt3g23gaaaaaaaaaaaaddaaaaaaaaaaabbbbbbbbaaaaaaaaaaaaaaaaaaaaaweaogiae;gjha"));
+
+
+function is_palindrome3(str){
+    var re = /[^A-Za-z0-9]/g;
+    var lowRegStr = str.toLowerCase().replace(re, '');
+    var reverseStr = lowRegStr.split('').reverse().join(''); 
+    return reverseStr === lowRegStr;
+}
+
+console.log(is_palindrome3('ha nn aah'));
