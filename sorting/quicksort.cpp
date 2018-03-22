@@ -40,7 +40,7 @@ void print(int arr[], int len){
 }
 
 int main(){
-    int arr[] = {6,5,3,1,8,7,2,4};
-    quicksort(arr,0,8);
-    print(arr,8);
+    int arr[] = {6,5,3,1,8,7,2,4,-10,11,-9};
+    quicksort(arr,0,10);
+    print(arr,11);
 }
