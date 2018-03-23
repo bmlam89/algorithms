@@ -49,9 +49,10 @@ class SLL{
         void print(){
             Node *current = header;
             while(current){
-                printf("%d\n",current->val);
+                printf("%d ",current->val);
                 current = current->next;
             }
+            printf("\n");
         }
 };
 
