@@ -15,11 +15,11 @@ int partition(int arr[], int low, int high){
         
         if (arr[j] <= pivot)
         {
-            i++;
-            swap(&arr[i], &arr[j]);
+            i++; //this moves the wall to the right
+            swap(&arr[i], &arr[j]); //swapping item closest to wall with item smaller than pivot
         }
     }
-    swap(&arr[i + 1], &arr[high]);
+    swap(&arr[i + 1], &arr[high]); //swapping item at the wall with pivot to update pivot
     return (i + 1);
 }
 
